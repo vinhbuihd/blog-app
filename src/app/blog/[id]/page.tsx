@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { deletePost } from "../action";
 import { Metadata } from "next";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 type Props = {
   params: Promise<{ id: string }>;
 };

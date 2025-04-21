@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation";
 import { updatePost } from "../../action";
-import prisma from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 type Props = {
   params: Promise<{ id: string }>;
