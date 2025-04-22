@@ -1,4 +1,4 @@
-export const dynamic = "force-dynamic"; // 👈 Thêm dòng này
+export const revalidate = 60;
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import React from "react";

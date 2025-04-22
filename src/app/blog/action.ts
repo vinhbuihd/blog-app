@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function updatePost(formData: FormData) {
@@ -14,6 +15,9 @@ export async function updatePost(formData: FormData) {
     data: { title, body, id },
   });
 
+  revalidatePath("/blog");
+  revalidatePath(`/blog/${id}`);
+
   redirect(`/blog/${id}`);
 }
 
@@ -23,6 +27,6 @@ export async function deletePost(formData: FormData) {
   await prisma.post.delete({
     where: { id },
   });
-
+  revalidatePath("/blog");
   redirect(`/blog`);
 }
