@@ -7,6 +7,16 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
+export async function generateStaticParams() {
+  const posts = await prisma.post.findMany({
+    select: { id: true },
+  });
+
+  return posts.map((post) => ({
+    id: String(post.id),
+  }));
+}
+
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
 
@@ -46,6 +56,13 @@ const BlogDetail = async ({ params }: Props) => {
       </p>
 
       <div className="flex items-center gap-4 mt-6">
+        <Link
+          href={`/blog`}
+          className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+        >
+          Back
+        </Link>
+
         <Link
           href={`/blog/${post.id}/edit`}
           className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
