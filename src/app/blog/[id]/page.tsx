@@ -7,15 +7,15 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-export async function generateStaticParams() {
-  const posts = await prisma.post.findMany({
-    select: { id: true },
-  });
+// export async function generateStaticParams() {
+//   const posts = await prisma.post.findMany({
+//     select: { id: true },
+//   });
 
-  return posts.map((post) => ({
-    id: String(post.id),
-  }));
-}
+//   return posts.map((post) => ({
+//     id: String(post.id),
+//   }));
+// }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params;
